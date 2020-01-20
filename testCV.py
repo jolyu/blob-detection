@@ -3,11 +3,14 @@ import numpy as np
 
 # read image in greyscale
 
-img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('IR_Bilder/Bilde_3.jpg', cv2.IMREAD_GRAYSCALE)
 img = cv2.resize(img, (650,500))
 
 # read image in Black/white
-(thresh, blackAndWhiteImage) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+Threshold = 95
+Max_Value = 255 
+
+(thresh, blackAndWhiteImage) = cv2.threshold(img, Threshold, Max_Value, cv2.THRESH_TOZERO)
 
 # Setup SimpleBlobDetector parameters.
 params = cv2.SimpleBlobDetector_Params()
@@ -19,11 +22,11 @@ params.maxThreshold = 255
 
 # Filter by Area.
 params.filterByArea = True
-params.minArea = 1
+params.minArea = 100
 
 # Filter by Circularity
 params.filterByCircularity = False
-params.minCircularity = 0.1
+params.minCircularity = 1
 
 # Filter by Convexity
 params.filterByConvexity = False
@@ -44,7 +47,7 @@ else:
 
 # detect suff
 keypoints = detector.detect(img)
- # for black and white image
+ # for black and white image 
 keypoints_1 = detector.detect(blackAndWhiteImage)
 
 #draw detected keypoints as red circles
