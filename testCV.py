@@ -44,10 +44,15 @@ else:
 
 # detect suff
 keypoints = detector.detect(img)
+ # for black and white image
 keypoints_1 = detector.detect(blackAndWhiteImage)
+
 #draw detected keypoints as red circles
 imgKeyPoints = cv2.drawKeypoints(img,keypoints, np.array([]),(0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+
+ # for black and White image 
 blackAndWhiteImageKeyPoints = cv2.drawKeypoints(blackAndWhiteImage,keypoints_1, np.array([]),(0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+
 #display results
 cv2.imshow("keypoints_grey", imgKeyPoints)
 cv2.imshow("keypoints_BlackAndWhite",blackAndWhiteImageKeyPoints)
