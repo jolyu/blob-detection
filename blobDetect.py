@@ -2,8 +2,7 @@ import cv2
 import numpy as np
 
 def readImage():
-    # read image in greyscale
-
+    # read image 
     img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, (650,500))
     return img
@@ -43,6 +42,36 @@ def blobDetector():
     
     return detector
 
+#Diffrent methods of grayscaling image 
+def adaptive_thresh(img,thresh,max,type):
+
+    if(type == "bin"):
+        #Normal binary thresholding 
+
+        ret,th1 = cv2.threshold(img,thresh,max,cv2.THRESH_BINARY) 
+        return th1
+    elif(type == "mean"):
+        #Adaptive mean thresholding
+
+        img_blur = cv2.medianBlur(img,5)
+        ret,th1 = cv2.threshold(img_blur,thresh,max,cv2.THRESH_BINARY)
+        th2 = cv2.adaptiveThreshold(th1,max,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,21,0)
+        return th2
+    elif(type =="gauss"):
+        #Adaptive gaussian thresholding 
+
+        img_blur = cv2.medianBlur(img,5)
+        ret,th1 = cv2.threshold(img_blur,thresh,max,cv2.THRESH_BINARY)
+        th3 = cv2.adaptiveThreshold(th1,max,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,5,0)
+        return th3
+    else:
+        #Otsu thersholding 
+        blur = cv2.GaussianBlur(img,(5,5),0)
+        ret3,th3 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        return th3
+
+
+
 def detectStuff(img, detector):
     # detect suff
     keypoints = detector.detect(img)
@@ -53,12 +82,25 @@ def detectStuff(img, detector):
 
 if __name__ == "__main__":
     img = readImage()
+    img_otsu = adaptive_thresh(img,127,255,"otsu")
+    img_gauss = adaptive_thresh(img,127,255,"gauss")
+    img_mean = adaptive_thresh(img,127,255,"mean")
+    img_bin  = adaptive_thresh(img,127,255,"bin")
     detect = blobDetector()
-    newImg = detectStuff(img, detect)
+
+    newImg_otsu = detectStuff(img_otsu, detect)
+
+    newImg_gauss = detectStuff(img_gauss, detect)
+
+    newImg_mean = detectStuff(img_mean, detect)
+
+    newImg_bin = detectStuff(img_bin, detect)
 
     #display results
-    cv2.imshow("preview", newImg)
-
+    cv2.imshow("otsu", newImg_otsu)
+    cv2.imshow("gauss",newImg_gauss)
+    cv2.imshow("mean",newImg_mean)
+    cv2.imshow("bin",newImg_bin)
     key = cv2.waitKey()
     while key != 27: # exit on ESC
         key = cv2.waitKey()
