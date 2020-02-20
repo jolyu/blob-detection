@@ -4,7 +4,7 @@ import numpy as np
 def readImage():
     # read image 
     img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (650,500))
+    img = cv2.resize(img, (600,300))
     return img
 
 def blobDetector():
