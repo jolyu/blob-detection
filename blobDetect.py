@@ -82,24 +82,24 @@ def detectStuff(img, detector):
 
 if __name__ == "__main__":
     img = readImage()
-    img_otsu = adaptive_thresh(img,127,255,"otsu")
-    img_gauss = adaptive_thresh(img,127,255,"gauss")
-    img_mean = adaptive_thresh(img,127,255,"mean")
+    #img_otsu = adaptive_thresh(img,127,255,"otsu")
+    #img_gauss = adaptive_thresh(img,127,255,"gauss")
+    #img_mean = adaptive_thresh(img,127,255,"mean")
     img_bin  = adaptive_thresh(img,127,255,"bin")
     detect = blobDetector()
 
-    newImg_otsu = detectStuff(img_otsu, detect)
+    #newImg_otsu = detectStuff(img_otsu, detect)
 
-    newImg_gauss = detectStuff(img_gauss, detect)
+    #newImg_gauss = detectStuff(img_gauss, detect)
 
-    newImg_mean = detectStuff(img_mean, detect)
+    #newImg_mean = detectStuff(img_mean, detect)
 
     newImg_bin = detectStuff(img_bin, detect)
 
     #display results
-    cv2.imshow("otsu", newImg_otsu)
-    cv2.imshow("gauss",newImg_gauss)
-    cv2.imshow("mean",newImg_mean)
+    #cv2.imshow("otsu", newImg_otsu)
+    #cv2.imshow("gauss",newImg_gauss)
+    #cv2.imshow("mean",newImg_mean)
     cv2.imshow("bin",newImg_bin)
     key = cv2.waitKey()
     while key != 27: # exit on ESC
