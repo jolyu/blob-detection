@@ -10,14 +10,15 @@ if __name__ == "__main__":
         rval, frame = vc.read()
     else:
         rval = False
-
+    frame = cv2.resize(frame, (600,500))
     cv2.imshow("preview", frame)
     detector = bd.blobDetector()
 
     while rval:
     
         rval, frame = vc.read()
-
+        frame = cv2.resize(frame, (600,500))
+        frame = 255 - frame
         newFrame = bd.detectStuff(frame, detector)
         cv2.imshow("blob", newFrame)
 

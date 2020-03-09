@@ -4,8 +4,13 @@ from Grayscale_funcs import*
 
 def readImage():
     # read image 
+<<<<<<< HEAD
     #img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, (600,300))
+=======
+    img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
+    img = cv2.resize(img, (600,00))
+>>>>>>> 8099c56ad5b49046980d63c13072cf4b70d954c3
     return img
 
 def blobDetector():
@@ -13,8 +18,8 @@ def blobDetector():
     params = cv2.SimpleBlobDetector_Params()
 
     # Change thresholds
-    params.minThreshold = 100
-    params.maxThreshold = 255
+    params.minThreshold = 0
+    params.maxThreshold = 100
 
 
     # Filter by Area.
@@ -22,11 +27,11 @@ def blobDetector():
     params.minArea = 20
 
     # Filter by Circularity
-    params.filterByCircularity = False
+    params.filterByCircularity = True
     params.minCircularity = 0.1
 
     # Filter by Convexity
-    params.filterByConvexity = False
+    params.filterByConvexity = True
     params.minConvexity = 0.87
 
     # Filter by Inertia
