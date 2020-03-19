@@ -4,13 +4,8 @@ from Grayscale_funcs import*
 
 def readImage():
     # read image 
-<<<<<<< HEAD
-    #img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (600,300))
-=======
     img = cv2.imread('Bilder/Birds.jpg', cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (600,00))
->>>>>>> 8099c56ad5b49046980d63c13072cf4b70d954c3
+    img = cv2.resize(img, (600,300))
     return img
 
 def blobDetector():
@@ -47,9 +42,6 @@ def blobDetector():
         detector = cv2.SimpleBlobDetector_create(params)
     
     return detector
-
-#Diffrent methods of grayscaling image 
-
 
 def detectStuff(img, detector):
     # detect suff
