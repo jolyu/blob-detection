@@ -8,7 +8,7 @@ from image_prosessing import *
 ```
 
 ## image_operations.py
-Functions to use opnCV to read pictures
+Functions to use OpenCV to read pictures
 
 Read image from path:
 ```python
