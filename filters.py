@@ -10,9 +10,7 @@ MANUAL_OTZU_FILTER = 2
 MORPHOLOGY_ON = True
 MORPHOLOGY_OFF = False
 
-def manual_otsu_binary(img):
-    # Otsu binarization function by calculating threshold
-
+def check2D(img):
     # check if input image is in grayscale (2D)
     try:
         if img.shape[2]:
@@ -20,6 +18,11 @@ def manual_otsu_binary(img):
             print('otsu_binary(img) input image should be in grayscale!')
     except IndexError:
         pass  # image doesn't have 3rd dimension - proceed
+
+def manual_otsu_binary(img):
+    # Otsu binarization function by calculating threshold
+
+    check2D(img)
 
     #gausian blur
     blur = cv2.GaussianBlur(img, (5, 5), 0)
@@ -52,6 +55,7 @@ def manual_otsu_binary(img):
 
 def otsu_binary(img):
     # Otsu binarization function.
+    check2D(img)
 
     #gausian blur
     blur = cv2.GaussianBlur(img, (5, 5), 0)
@@ -63,6 +67,8 @@ def otsu_binary(img):
 
 def morphologyFilter(img, kernelSize):
     #morphology filter
+
+    check2D(img)
 
     # check if input image is in grayscale (2D)
     try:
@@ -80,13 +86,7 @@ def morphologyFilter(img, kernelSize):
 
 def filterImg(img, filterType=0, morphology=False):
     # check if input image is in grayscale (2D)
-    # check if input image is in grayscale (2D)
-    try:
-        if img.shape[2]:
-            # if there is 3rd dimension
-            print('otsu_binary(img) input image should be in grayscale!')
-    except IndexError:
-        pass  # image doesn't have 3rd dimension - proceed
+    check2D(img)
 
     invImg = img_o.invertImage(img) #some functions are created to work this way
 
