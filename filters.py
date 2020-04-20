@@ -83,7 +83,7 @@ def filterImg(img, filterType=0, morphology=False):
     invImg = img_o.invertImage(img) #some functions are created to work this way
 
     #make function to crop img, or make function to remove flir bullshit (do the last)
-    invImg = invImg[20:200, 0:300] #temp
+    invImg = invImg[25:210, 0:300] #temp
 
     if filterType == SIMPLE_THRESHOLD_FILTER: #regular binary threshold
         _, threshImg = cv2.threshold(invImg, 60, 255, cv2.THRESH_BINARY) #just regular thresholding with random threshold
