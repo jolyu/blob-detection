@@ -1,5 +1,5 @@
 # Image_prosessing
-Image prosessing for IR pictures
+Image prosessing for IR pictures. Used to detect birds with IR camera.
 
 Add to project and import
 
