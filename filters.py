@@ -16,7 +16,7 @@ def check2D(img):
     try:
         if img.shape[2]:
             # if there is 3rd dimension
-            print('otsu_binary(img) input image should be in grayscale!')
+            log.warning('otsu_binary(img) input image should be in grayscale!')
     except IndexError:
         pass  # image doesn't have 3rd dimension - proceed
 
@@ -69,16 +69,7 @@ def otsu_binary(img):
 def morphologyFilter(img, kernelSize):
     #morphology filter
 
-    check2D(img)
-
-    # check if input image is in grayscale (2D)
-    try:
-        if img.shape[2]:
-            # if there is 3rd dimension
-            print('otsu_binary(img) input image should be in grayscale!')
-    except IndexError:
-        pass  # image doesn't have 3rd dimension - proceed
-    
+    check2D(img)    
 
     morphImgOpen = cv2.morphologyEx(img, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kernelSize,kernelSize)))
     morphImgClose = cv2.morphologyEx(morphImgOpen, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kernelSize,kernelSize)))
@@ -102,6 +93,7 @@ def filterImg(img, filterType=0, morphology=False):
         threshImg = manual_otsu_binary(invImg)
         
     else:
+        log.warning('something went wrong')
         raise AttributeError('Good luck debugging! Gotta love good error messages ;)')
         
     if morphology:
