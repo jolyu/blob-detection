@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
-import image_operations as img_o
-import filters
+from . import filters
+from . import image_operations as img_o
+
 
 def initBlobDetector():
     # Setup SimpleBlobDetector parameters.
@@ -49,8 +50,8 @@ def blobDetection(img):
 
 def blob_detection_test_func():
     print('Lets have a look at all cases of filter func')
-    img = img_o.readImage('test_pictures/FLIR0027.jpg')
-    cv2.imshow('org',img)
+    img = img_o.readImage('FLIR0023.jpg')
+    cv2.imshow('org', img)
 
     img1 = filters.filterImg(img, 0, True)
     cv2.imshow('0M', img1)

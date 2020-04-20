@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import image_operations as img_o
+from . import image_operations as img_o
 
 #global variables
 SIMPLE_THRESHOLD_FILTER = 0
