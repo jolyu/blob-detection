@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from . import image_operations as img_o
+from logging_framework import logging_setup as log
 
 #global variables
 SIMPLE_THRESHOLD_FILTER = 0
@@ -101,7 +102,6 @@ def filterImg(img, filterType=0, morphology=False):
         threshImg = manual_otsu_binary(invImg)
         
     else:
-        #log.critical('HAHAHA! Function input scuffed')
         raise AttributeError('Good luck debugging! Gotta love good error messages ;)')
         
     if morphology:

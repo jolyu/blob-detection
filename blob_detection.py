@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from . import filters
 from . import image_operations as img_o
+from logging_framework import logging_setup as log
 
 
 def initBlobDetector():
