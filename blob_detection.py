@@ -62,9 +62,10 @@ def init_blob_detector():
 
     return detector
     
-def draw_blobs(img, keyPoints):     
-    imgKeyPoints = cv2.drawKeypoints(img, keyPoints, np.array([]),(0,0,255), cv2.DRAW_MATCHES_FLAGS_DEFAULT) #DRAW_MATCHES_FLAGS_RICH KEYPOINTS for cicles and not dots
-    cv2.imshow('blobs', imgKeyPoints)                                                          #show img
+def draw_blobs(img, keyPoints, color, name='blobs'):     
+
+    imgKeyPoints = cv2.drawKeypoints(img, keyPoints, np.array([]), color, cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS) #DRAW_MATCHES_FLAGS_RICH KEYPOINTS for cicles and not dots
+    cv2.imshow(name, imgKeyPoints)                                                          #show img
 
 def blob_detection(img):
     #function to detect blobs. Returns list of keypoints
@@ -74,7 +75,7 @@ def blob_detection(img):
     keyPoints = detector.detect(img) #analyse and make list of blobs in picture
 
     if DEBUG:
-        draw_blobs(img, keyPoints)  #show img with red cicles if debug
+        draw_blobs(img, keyPoints, (0,0,255))  #show img with red cicles if debug
     
     return keyPoints
 
