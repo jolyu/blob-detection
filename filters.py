@@ -25,8 +25,9 @@ def check_2D(img):
     try:
         if img.shape[2]:
             # if there is 3rd dimension
-            log.warning('otsu_binary(img) input image should be in grayscale!')
+            pass
     except IndexError:
+        #log.warning('otsu_binary(img) input image should be in grayscale!')
         pass  # image doesn't have 3rd dimension - proceed
 
 def manual_otsu_binary(img):
