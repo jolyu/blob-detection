@@ -99,6 +99,18 @@ def filter_img(img, filterType=0, morphology=False):
         return morphImg
     return threshImg
 
+def filter_img2(img):
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    check_2D(img)
+    gray = gray[25:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+    blurred = cv2.medianBlur(gray, 9)
+    _filter = cv2.bilateralFilter(blurred, 5, 75, 75)
+    adap_thresh = cv2.adaptiveThreshold(_filter, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 21, 0)
+    
+    element = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3)) 
+    dilated = cv2.dilate(adap_thresh, element, iterations=1)
+    return dilated
+
 #------------------------------   ^FUNCTIONS^   ------------------------------
 
 #------------------------------   v TEST FUNCTION v   ------------------------------
