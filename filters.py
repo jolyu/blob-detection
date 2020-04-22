@@ -81,9 +81,10 @@ def filter_img(img, filterType=0, morphology=False):
 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #convert to greyscale
     check_2D(img)                               #check if input image is in grayscale (2D)
+    
+    img = img_o.crop(img)
+    img = img_o.add_edge(img)
     invImg = img_o.invert_image(img)            #some functions are created to work this way
-    invImg = img_o.crop(gray)
-
     if filterType == SIMPLE_THRESHOLD_FILTER:   #regular binary threshold
         _, threshImg = cv2.threshold(invImg, THRESHOLD_BINARY, MAX, cv2.THRESH_BINARY) #just regular thresholding with random threshold
     elif filterType == CV_OTZU_FILTER: #openCV otzu threshold
@@ -101,8 +102,10 @@ def filter_img(img, filterType=0, morphology=False):
 
 def filter_img2(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    check_2D(img)
-    gray = gray[25:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+    check_2D(gray)
+
+    gray = img_o.crop(gray)
+    gray = img_o.add_edge(gray)
     blurred = cv2.medianBlur(gray, 9)
     _filter = cv2.bilateralFilter(blurred, 5, 75, 75)
     adap_thresh = cv2.adaptiveThreshold(_filter, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 21, 0)

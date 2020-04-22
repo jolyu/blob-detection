@@ -32,7 +32,17 @@ def invert_image(img):
 
 def crop(img):
     #Return croped image to remove flir overlay.
-    return img[25:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+
+    return img[30:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+
+def add_edge(img, color=255):
+    top = 10
+    bottom = 10
+    left = 10
+    right = 10
+
+    out_img = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT, (255))
+    return out_img
 
 # ------------------------------   ^ FUNCTIONS ^   ------------------------------
 
