@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from logging_framework import logging_setup as log
 
-#------------------------------   v FUNCTIONS v   ------------------------------
+# ------------------------------   V FUNCTIONS V   ------------------------------
 
 def read_image_from_path(path, name, ext, amount):
     #Function for reading images from folder. Example: image_5.jpg -> read_image('path', 'image_', 'jpg', 50)
@@ -30,7 +30,11 @@ def invert_image(img):
     #Return inversion of an image.
     return cv2.bitwise_not(img)
 
-#------------------------------   ^FUNCTIONS^   ------------------------------
+def crop(img):
+    #Return croped image to remove flir overlay.
+    return img[25:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+
+# ------------------------------   ^ FUNCTIONS ^   ------------------------------
 
 if __name__ == "__main__":
     pass

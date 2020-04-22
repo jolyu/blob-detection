@@ -3,7 +3,7 @@ import numpy as np
 from . import image_operations as img_o
 from logging_framework import logging_setup as log
 
-#------------------------------   v GLOBAL VARIABLES v   ------------------------------
+# ------------------------------   V GLOBAL VARIABLES V   ------------------------------
 SIMPLE_THRESHOLD_FILTER = 0
 CV_OTZU_FILTER = 1
 MANUAL_OTZU_FILTER = 2
@@ -16,9 +16,9 @@ MIN = 0
 MAX = 255
 THRESHOLD_BINARY = 60
 
-#------------------------------   ^GLOBAL VARIABLES^   ------------------------------
+# ------------------------------   ^ GLOBAL VARIABLES ^   ------------------------------
 
-#------------------------------   v FUNCTIONS v   ------------------------------
+# ------------------------------   V FUNCTIONS V   ------------------------------
 
 def check_2D(img):
     # check if input image is in grayscale (2D)
@@ -82,7 +82,7 @@ def filter_img(img, filterType=0, morphology=False):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #convert to greyscale
     check_2D(img)                               #check if input image is in grayscale (2D)
     invImg = img_o.invert_image(img)            #some functions are created to work this way
-    invImg = invImg[25:210, 0:300]              #make function to crop img, or make function to remove flir bullshit (do the last)
+    invImg = img_o.crop(gray)
 
     if filterType == SIMPLE_THRESHOLD_FILTER:   #regular binary threshold
         _, threshImg = cv2.threshold(invImg, THRESHOLD_BINARY, MAX, cv2.THRESH_BINARY) #just regular thresholding with random threshold
@@ -144,7 +144,7 @@ def filters_test_func():
             break
     cv2.destroyAllWindows()
 
-#------------------------------   ^TEST FUNCTION^   ------------------------------
+# ------------------------------   ^ TEST FUNCTION ^   ------------------------------
 
 if __name__ == "__main__":
     filters_test_func()

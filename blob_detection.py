@@ -5,58 +5,59 @@ from . import image_operations as img_o
 from logging_framework import logging_setup as log
 
 
-#------------------------------   v GLOBAL VARIABLES v   ------------------------------
+# ------------------------------   V GLOBAL VARIABLES V   ------------------------------
 
 #blob detect parameters:
-MAX_THRESHOLD = 93
-MIN_THRESHOLD = 65
-MAX_AREA = 1000
+MAX_THRESHOLD = 200
+MIN_THRESHOLD = 10
+MAX_AREA = 5000
 MIN_AREA = 10
 MAX_CIRCULARITY = 1
-MIN_CIRCULATIRY = 0.4
+MIN_CIRCULATIRY = 0
 MAX_CONVEXITY = 1
-MIN_CONVEXITY = 0.0
+MIN_CONVEXITY = 0
 MAX_INETRTIA_RATIO = 1
 MIN_INERTIA_RATIO = 0.0
+BLOB_COLOR = 0
 
 
 DEBUG = True #uncomment to use imshow etc.
 
-#------------------------------   ^GLOBAL VARIABLES^   ------------------------------
+# ------------------------------   ^ GLOBAL VARIABLES ^   ------------------------------
 
-#------------------------------   v FUNCTIONS v   ------------------------------
+# ------------------------------   V FUNCTIONS V   ------------------------------
 
 def init_blob_detector():
     # Setup SimpleBlobDetector parameters.
     params = cv2.SimpleBlobDetector_Params()
 
     # Change thresholds
-    #params.maxThreshold = MAX_THRESHOLD
-    #params.minThreshold = MIN_THRESHOLD
+    params.maxThreshold = MAX_THRESHOLD
+    params.minThreshold = MIN_THRESHOLD
 
-    #params.filterByColor = False
-    #params.blobColor = False
+    params.filterByColor = True
+    params.blobColor = BLOB_COLOR
     
     # Filter by Area.
     params.filterByArea = False
-    #params.maxArea = MAX_AREA
+    params.maxArea = MAX_AREA
     #params.minArea = MIN_AREA
  
 
     # Filter by Circularity
-    params.filterByCircularity = False
+    params.filterByCircularity = True
     #params.maxCircularity = MAX_CIRCULARITY
-    #params.minCircularity = MIN_CIRCULATIRY
+    params.minCircularity = MIN_CIRCULATIRY
 
     # Filter by Convexity
-    params.filterByConvexity = False
-    #params.minConvexity = MIN_CONVEXITY
+    params.filterByConvexity = True
+    params.minConvexity = MIN_CONVEXITY
     #params.maxConvexity = MAX_CONVEXITY
 
     # Filter by Inertia
-    params.filterByInertia = False
+    params.filterByInertia = True
     #params.maxInertiaRatio = MAX_INERTIA_RATIO
-    #params.minInertiaRatio = MIN_INERTIA_RATIO
+    params.minInertiaRatio = MIN_INERTIA_RATIO
 
     detector = cv2.SimpleBlobDetector_create(params)    #create detector
 
@@ -79,16 +80,16 @@ def blob_detection(img):
     
     return keyPoints
 
-#------------------------------   ^FUNCTIONS^   ------------------------------
+# ------------------------------   ^ FUNCTIONS ^   ------------------------------
 
-#------------------------------   v TEST FUNCTION v   ------------------------------
+# ------------------------------   V TEST FUNCTION V   ------------------------------
 
 def blob_detection_test_func():
     #just some function to test
-    #currently empty
-    pass
+    
+    blob
 
-#------------------------------   ^TEST FUNCTION^   ------------------------------
+# ------------------------------   ^ TEST FUNCTION ^   ------------------------------
 
 if __name__ == "__main__":
     pass
