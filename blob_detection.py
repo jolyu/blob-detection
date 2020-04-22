@@ -20,7 +20,7 @@ MAX_INETRTIA_RATIO = 1
 MIN_INERTIA_RATIO = 0.0
 
 
-DEBUG = False #uncomment to use imshow etc.
+DEBUG = True #uncomment to use imshow etc.
 
 #------------------------------   ^GLOBAL VARIABLES^   ------------------------------
 
@@ -63,7 +63,7 @@ def init_blob_detector():
     return detector
     
 def draw_blobs(img, keyPoints):     
-    imgKeyPoints = cv2.drawKeypoints(img, keyPoints, np.array([]),(0,0,255), cv2.DRAW_MATCHES) #DRAW_MATCHES_FLAGS_RICH KEYPOINTS for cicles and not dots
+    imgKeyPoints = cv2.drawKeypoints(img, keyPoints, np.array([]),(0,0,255), cv2.DRAW_MATCHES_FLAGS_DEFAULT) #DRAW_MATCHES_FLAGS_RICH KEYPOINTS for cicles and not dots
     cv2.imshow('blobs', imgKeyPoints)                                                          #show img
 
 def blob_detection(img):
